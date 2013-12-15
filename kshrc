@@ -3,8 +3,10 @@
 . ~/.kshrc.d/git_branch
 . ~/.kshrc.d/tmup
 
-PATH="$HOME/.plenv/bin:$PATH"
-eval "$(plenv init -)"
+if [ which plenv > /dev/null 2>&1 ]; then
+    PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
 
 alias getpass="perl -I${HOME}/Palm/lib ${HOME}/Palm/examples/example3.pl -sn"
 alias randpasswd="perl /usr/local/libdata/perl5/site_perl/Crypt/RandPasswd.pm"
