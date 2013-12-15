@@ -17,7 +17,7 @@ which gvim    >/dev/null 2>&1 && alias vi=gvim
 
 alias myip='lynx -dump http://ifconfig.me/ip'
 
-if [ `hostname -s` != "earth" ]; then
+if [ "$HOST" != "earth" ]; then
     if type -p printf > /dev/null 2>&1; then
         red="echo -en \e[31m"
         export PS1='\[\e[0;36m\]\h: \W $(git_branch) \[\e[01m\e[30m$([ $? -eq 0 ]||$red)\]\$\[\e[0m\] '

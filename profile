@@ -15,19 +15,17 @@ export LESS=iR
 export NNTPSERVER=news.redrivernet.com
 which vim >/dev/null 2>&1 && export VISUAL=vim
 
-hostname=$(hostname -s)
-
-if [ $hostname = "earth" ]; then
+if [ "$HOST" = "earth" ]; then
     PKG_PATH="/usr/ports/packages/`machine`/all/:ftp://us.holligan.net/pub/OpenBSD/`uname -r`/packages/`machine`/:ftp://rrlhcbtt0100/pub/OpenBSD/`uname -r`/packages/`machine`/:ftp://ftp3.usa.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine`/"
 fi
 
-if [ $hostname = "trillian" ]; then
+if [ "$HOST" = "trillian" ]; then
     if [ -e ~/.ssh/agent_info ]; then
         . ~/.ssh/agent_info
     fi
 fi
 
-if [ $hostname = 'us' ]; then
+if [ "$HOST" = 'us' ]; then
     [ $TERM = "xterm" ] && eval `tset -Qs xterm-color`
 
     if [ -e ~/.fetchmailrc ] ; then
