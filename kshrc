@@ -3,6 +3,8 @@
 . ~/.kshrc.d/git_branch
 . ~/.kshrc.d/tmup
 
+[ -e ~/.kshrc.d/$HOST ] && . ~/.kshrc.d/$HOST
+
 if [ which plenv > /dev/null 2>&1 ]; then
     PATH="$HOME/.plenv/bin:$PATH"
     eval "$(plenv init -)"
