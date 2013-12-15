@@ -1,0 +1,45 @@
+sticky yes
+fontname "-*-profont-*-*-*-*-*-120-*-*-*-*-*-*"
+gap 0 15 0 0
+
+moveamount 3
+
+command lock "/home/andrew/bin/lock_screen"
+command term "/usr/X11R6/bin/uxterm"
+command toggle_transparancy "/usr/local/bin/transset-df"
+command firefox "/home/andrew/bin/firefox"
+
+bind 4-k "ptrmoveup"
+bind 4-j "ptrmovedown"
+bind 4-l "ptrmoveright"
+bind 4-h "ptrmoveleft"
+
+bind 4S-k "bigptrmoveup"
+bind 4S-j "bigptrmovedown"
+bind 4S-l "bigptrmoveright"
+bind 4S-h "bigptrmoveleft"
+
+#bind SunFront "raise"
+#bind SunProps "label"
+#bind SunOpen "exec"
+#bind Find "search"
+
+bind 4-r "exec"
+bind 4-space "exec"
+
+bind 4-t "/usr/local/bin/transset-df -p"
+bind 4-l "/usr/local/bin/transset-df -p --dec .1"
+bind 4-m "/usr/local/bin/transset-df -p --inc .1"
+
+bind 4-F5 "/usr/X11R6/bin/xbacklight -5"
+bind 4-F6 "/usr/X11R6/bin/xbacklight +5"
+
+bind XF86AudioRaiseVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=+1"
+bind XF86AudioLowerVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=-1"
+
+bind M-v "/usr/local/bin/gvim"
+
+ignore xclock
+autogroup 0 "Pidgin"
+autogroup 0 "XClock"
+autogroup 9 "rdesktop"

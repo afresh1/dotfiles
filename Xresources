@@ -1,0 +1,20 @@
+!XTerm*background: black
+!XTerm*foreground: green
+!XTerm*loginShell: true
+!*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
+!XTerm*faceName: ProFont
+!XTerm*faceSize: 8
+!XTerm.termName:         xterm-free86
+Xft.antialias:  true
+Xft.rgba:       rgb
+! rgb, bgr, vrgb, vbgr
+Xft.hinting:    true
+Xft.hintstyle:  hintsfull
+!hintsnone, hintslight, hintsmedium, hintsfull
+Vim.geometry: 80x30-0-0
+UXTerm*background: black
+UXTerm*foreground: green
+!UXTerm*loginShell: true
+*faceName: xft:ProFontWindows
+!:pointsize=9
+*faceSize: 9

@@ -1,0 +1,22 @@
+#!/bin/sh
+DIR=$(cd `dirname "$0"` && pwd);
+INSTALLER=$(basename "$0")
+
+for dotfile in "$DIR"/*; do
+    basename=$(basename "$dotfile")
+    [ "$basename" = "$INSTALLER" ]    && continue # Don't install the installer
+    [ "${basename#.}" = "$basename" ] || continue # No actual dotfiles
+
+    destfile="$HOME/.${dotfile#$DIR/}" 
+    [ -e "$destfile" ] && continue
+
+    echo "Installing $destfile"
+    ln -s "$dotfile" "$destfile"
+done
+
+# Work around tmux not being able to source with a variable
+if [ ! -e "$HOME/.tmux.conf.local" ]; then
+    hostname=$(hostname -s)
+    touch "$DIR/tmux.d/$hostname"
+    ln -s "$DIR/tmux.d/$hostname" "$HOME/.tmux.conf.local"
+fi

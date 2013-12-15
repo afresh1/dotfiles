@@ -1,0 +1,158 @@
+########################################################################
+# .muttrc *** Andrew's .muttrc, 
+########################################################################
+
+# set what headers to view
+ignore *
+unignore \
+From To Subject Date X-Mailer cc newsgroups \
+reply-to  X-Spam-Score X-Bayes-Prob \
+Organization Organisation User-Agent
+hdr_order From Date: From: To: Cc: Subject:
+
+
+# set other options
+set envelope_from
+set copy=yes
+set move=no
+set spoolfile=~/Maildir
+set folder=~/Maildir
+set mbox_type="maildir" 
+set pager_context=1
+set quit=ask-yes
+set record=+.Sent
+unset save_empty
+set fast_reply  # Life's so short.
+set smart_wrap
+set pager_context=6
+set mask="^\\.[^.]"
+set edit_headers
+set tilde
+set smart_wrap
+set wrapmargin=10
+unset markers
+set pager_context=1		      # paging shows me one line leftover
+set folder_format="%2C %t%N %8s %d %f"
+auto_view text/calendar
+set mail_check=60
+
+set editor="vim +':set textwidth=72' +':set wrap' +\`awk '/^$/ {print i+2; exit} {i++}' %s\` %s"
+
+alternative_order text/plain text/enriched text
+
+set header_cache="~/.mutt/hcache"
+#set maildir_cache=/home/andrew/.mutt/hcache
+set postponed="~/Maildir/.Drafts/"
+
+#my_hdr X-`~/bin/FuturamaQuotes`
+
+# Send Hooks
+send-hook . 'unmy_hdr From:; unmy_hdr Reply-To:; set signature="siggen|"'
+
+# Folder Hooks
+folder-hook =\.Sent.* '\
+	set sort=date-sent; \
+	push "<limit>.<enter><last-entry>"'
+
+folder-hook . '\
+	set sort=threads; \
+	set sort_aux=last-date-received; \
+	set pager_index_lines=5; \
+	set index_format="%4C %Z %{%b %d} %-15.15F (%4l) %s"; \
+	push "<limit>~U || ~F<enter>"'
+
+folder-hook =$ 'source ~/bin/mutt_mailboxes|'
+
+# this enables transliteration which replaces bogus characters with similar
+# ones, which has the effect of showing spaces instead of question marks in
+# certain quoted-printable messages (like on =A0 characters)
+set charset="us-ascii//TRANSLIT"
+
+#
+#   Key bindings
+#   Make mutt's bindings as close to lynx', slrn's, and vim's as possible
+#
+
+#
+# Tell CanIt the message should have been spam, and delete it, or ham and keep it. 
+#
+#macro index \eS "<tag-prefix><pipe-entry>spammy\n<tag-prefix><delete-message>"
+#macro pager \eS "<pipe-entry>spammy\n<delete-message>"
+#macro index \eH "<tag-prefix><pipe-entry>hammy\n"
+#macro pager \eH "<pipe-entry>hammy\n"
+
+
+# move 1/2 page up/down like in vi
+bind generic \Cu    half-up
+bind generic \Cd    half-down
+bind pager   \Cu    half-up
+bind pager   \Cd    half-down
+bind generic   b    previous-page
+bind generic \Cb    previous-page
+bind generic \Cf    next-page
+bind generic   1G   first-entry
+bind generic   1g   first-entry
+bind generic <Home> first-entry
+bind generic \Ca    first-entry
+bind generic   G    last-entry
+bind generic <End>  last-entry
+bind generic \Ce    last-entry
+
+bind pager   \eD    delete-thread
+bind pager   \eU    undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind pager \Ca      top
+bind pager <Home>   top
+bind pager  1G      top
+bind pager  1g      top
+bind pager \Ce      bottom
+bind pager <End>    bottom
+bind pager   G      bottom
+bind pager   q      exit
+bind pager <Left>   exit
+bind pager   i      noop
+bind pager   B      bounce-message
+bind pager   b      previous-page
+bind pager \Cb      previous-page
+bind pager \Cf      next-page
+bind pager k        previous-line
+bind pager j        next-line
+bind pager <Up>     previous-line
+bind pager <Down>   next-line
+bind pager <Insert> previous-entry
+bind pager <Delete> next-entry
+
+bind index \eD     delete-thread
+bind index \eU     undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind index   B     bounce-message
+bind index \ef     forget-passphrase
+bind index \Cb     previous-page
+bind index \Cf     next-page
+bind index <Up>    previous-entry
+bind index <Down>  next-entry
+bind index <Right> display-message
+bind index <Home>  first-entry
+bind index <End>   last-entry
+bind index   1G    first-entry
+bind index   1g    first-entry
+bind index \Ca     first-entry
+bind index   G     last-entry
+bind index \Ce     last-entry
+
+bind alias <Tab> next-entry
+
+bind browser <Right> select-entry
+
+# Set locations of additional files
+set alias_file="~/.mutt/aliases"
+#source "~/bin/mutt_aliases|"
+source "~/.mutt/aliases"
+source "~/.mutt/aliases_from_google"
+source "~/bin/mutt_mailboxes|"
+source "~/.mutt/subscriptions"
+source "~/.mutt/$TERM"
+source "/etc/mutt/gpg.rc"
+source "~/.mutt/t-prot"
+#source "~/.mutt/sidebar
+source "~/.mutt/local"

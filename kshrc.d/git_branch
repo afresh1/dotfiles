@@ -1,0 +1,30 @@
+git_branch() {
+    local _branch=`git branch --no-color 2> /dev/null | sed -ne 's/^* //p'`
+    [[ -z $_branch ]] && return
+ 
+    local _bgcolor
+    local _color
+ 
+    for s in `git status --porcelain | tr ' ' '.' | cut -c 1-2`; do
+        if [ -z "$_color" ]; then
+            case "$s" in
+               ?D)   _color='\e[31;1m' ;;
+               ?M)   _color='\e[36;1m' ;;
+               \?\?) _color='\e[33;1m' ;;
+            esac
+        fi
+        if [ -z "$_bgcolor" ]; then
+            case $s in
+               A?) _bgcolor='\e[43m' ;;
+               D?) _bgcolor='\e[41m' ;;
+               M?) _bgcolor='\e[44m' ;;
+               R?) _bgcolor='\e[45m' ;;
+            esac
+        fi
+        #echo -n "\n$s [${_color#\\}][${_bgcolor#\\}]"
+    done
+ 
+    _color=${_color:-'\e[32;1m'}
+    #_bgcolor=${_bgcolor:-'\e[42m'}
+    echo -en "\[\e[0m\]{\[$_bgcolor$_color\]${_branch}\[\e[0m\]}"
+}

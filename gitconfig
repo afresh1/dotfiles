@@ -1,0 +1,11 @@
+[user]
+	name = Andrew Fresh
+	email = andrew@afresh1.com
+[github]
+	user = afresh1
+[core]
+	autocrlf = input
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always

@@ -1,0 +1,16 @@
+tmup() {
+    IFS="="
+    #set -x
+    #TMPFILE=`mktemp tmup.XXXXXXXXX`
+    tmux showenv |&
+    while read -p key value ; do
+        if [ ${key} != ${key#-} ]; then
+            unset ${key#-}
+        else
+            set $key="$value"
+        fi
+    done
+    # > $TMPFILE
+    # . $TMPFILE
+    # rm -f $TMPFILE
+}

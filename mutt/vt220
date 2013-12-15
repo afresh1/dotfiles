@@ -1,0 +1,24 @@
+# $Id: vt220,v 1.1 2004/07/23 20:27:22 andrew Exp $
+color header white black Subject:
+color header brightgreen black X-Mailer:
+color header brightgreen black X-Newsreader:
+#color header brightcyan white   ^(to|from|cc):
+#color header brightcyan white   ^subject:
+#color header red white ^x-mailer:
+color body brightyellow white "(ftp|http)://[-a-z_0-9./%#~:?]+"
+color body brightwhite white [-a-z_0-9.%$']+@[-a-z_0-9.%$']+
+#color body brightgreen black "[^A-Z][%;:]-*[)>(<|]|^[%;:]-*[)>(<|]*"
+color body brightgreen black "( |^)[;:]-*[)>(<|]+"
+color body brightred black "\\[.*\]"
+
+color hdrdefault magenta black
+color quoted blue black
+color signature brightred black
+color status white black
+color normal white black
+color attachment white black
+color error white black
+color tilde white black
+color tree white black
+color indicator black white
+

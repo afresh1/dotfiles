@@ -1,0 +1,8 @@
+new-session -n mutt "sh -c mutt"
+new-window -d -n irssi "/usr/bin/env LC_CTYPE=en_US.UTF-8 sh -c irssi"
+
+bind-key C-m new-window -n mutt "sh -c mutt"
+
+set-window-option -t irssi monitor-activity off
+set-window-option -t irssi monitor-content afresh1:
+
