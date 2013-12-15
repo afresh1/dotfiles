@@ -4,6 +4,8 @@ INSTALLER=$(basename "$0")
 
 for dotfile in "$DIR"/*; do
     basename=$(basename "$dotfile")
+    [ "$basename" = "LICENSE" ]       && continue
+    [ "$basename" = "README.md" ]     && continue
     [ "$basename" = "$INSTALLER" ]    && continue # Don't install the installer
     [ "${basename#.}" = "$basename" ] || continue # No actual dotfiles
 
