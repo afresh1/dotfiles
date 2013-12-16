@@ -1,0 +1,9 @@
+# pvi Time::Local::Extended
+pvi ()
+{
+    local file;
+    file=$(perldoc -l $1);
+    if [[ "$?" == "0" ]]; then
+        vim $file;
+    fi
+}
