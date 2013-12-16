@@ -1,11 +1,11 @@
 git_branch() {
-    local _branch=`git branch --no-color 2> /dev/null | sed -ne 's/^* //p'`
+    local _branch=$(git branch --no-color 2> /dev/null | sed -ne 's/^* //p')
     [[ -z $_branch ]] && return
  
     local _bgcolor
     local _color
  
-    for s in `git status --porcelain | tr ' ' '.' | cut -c 1-2`; do
+    for s in $(git status --porcelain | tr ' ' '.' | cut -c 1-2); do
         if [ -z "$_color" ]; then
             case "$s" in
                ?D)   _color='\e[31;1m' ;;
