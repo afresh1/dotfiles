@@ -13,7 +13,7 @@ for dotfile in "$DIR"/*; do
     [ -e "$destfile" ] && continue
 
     echo "Installing $destfile"
-    ln -s "$dotfile" "$destfile"
+    ln -sf "$dotfile" "$destfile"
 done
 
 # Work around tmux not being able to source with a variable
