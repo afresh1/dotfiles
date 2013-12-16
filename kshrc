@@ -1,9 +1,8 @@
-. /etc/ksh.kshrc
+[ -e /etc/ksh.kshrc ] && . /etc/ksh.kshrc
 
 . ~/.kshrc.d/git_branch
 . ~/.kshrc.d/tmup
-
-[ -e ~/.kshrc.d/$HOST ] && . ~/.kshrc.d/$HOST
+. ~/.kshrc.d/pvi
 
 if [ which plenv > /dev/null 2>&1 ]; then
     PATH="$HOME/.plenv/bin:$PATH"
@@ -25,3 +24,6 @@ if [ "$HOST" != "earth" ]; then
         export PS1='\[\e[0;36m\]\h: \W \[\e[01m\e[30m\]\$\[\e[0m\] '
     fi
 fi
+
+[ -e ~/.kshrc.d/$HOST ] && . ~/.kshrc.d/$HOST
+
