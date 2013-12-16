@@ -38,5 +38,9 @@ git_branch() {
  
     _color=${_color:-'\e[32;1m'}
     #_bgcolor=${_bgcolor:-'\e[42m'}
-    echo -en "\[\e[0m\]{\[$_bgcolor$_color\]${_branch}\[\e[0m\]}"
+    if [ "${KSH_VERSION%*PD KSH}" != "$KSH_VERSION" ]; then
+        echo -en "\[\e[0m\]{\[$_bgcolor$_color\]${_branch}\[\e[0m\]}"
+    else
+        echo -en "\e[0m{$_bgcolor$_color${_branch}\e[0m}"
+    fi
 }
