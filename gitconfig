@@ -9,3 +9,6 @@
 	default = simple
 [branch]
 	autosetuprebase = always
+[alias]
+	branch-note = "!git config branch.$(git symbolic-ref HEAD|sed \"s/refs\\/heads\\///\").note $( if [ $# -gt 0 ]; then $1; fi)"
+	co = checkout
