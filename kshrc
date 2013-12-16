@@ -1,4 +1,5 @@
 [ -e /etc/ksh.kshrc ] && . /etc/ksh.kshrc
+[ "$HOST" ] || export HOST=$( hostname -s )
 
 . ~/.kshrc.d/git_branch
 . ~/.kshrc.d/tmup
