@@ -8,21 +8,28 @@ git_branch() {
     for s in $(git status --porcelain | tr ' ' '.' | cut -c 1-2); do
         if [ ! "$_color" ]; then
             case "$s" in
-               ?D)   _color='\e[31;1m' ;;
-               ?M)   _color='\e[36;1m' ;;
-               \?\?) _color='\e[33;1m' ;;
+               ?D)  _color='\e[31m' ;;
+               ?M)  _color='\e[36m' ;;
+               ?\?) _color='\e[33m' ;;
             esac
         fi
         if [ ! "$_bgcolor" ]; then
             case $s in
                A?) _bgcolor='\e[43m' ;;
                D?) _bgcolor='\e[41m' ;;
-               M?) _bgcolor='\e[44m' ;;
+               M?) _bgcolor='\e[46m' ;;
                R?) _bgcolor='\e[45m' ;;
             esac
         fi
         #echo -n "\n$s [${_color#\\}][${_bgcolor#\\}]"
     done
+
+    # Default color for all's well
+    _color=${_color:-'\e[32m'}
+    #_bgcolor=${_bgcolor:-'\e[42m'}
+
+    # Bold the color if we have a background color
+    [ "$_color" -a "$_bgcolor" ] && _color="${_color%m};1m"
 
     local now=$(date +%s)
     local last_pull=0
@@ -36,8 +43,6 @@ git_branch() {
         #_bgcolor='\x1b[41;1m';
     fi
  
-    _color=${_color:-'\e[32;1m'}
-    #_bgcolor=${_bgcolor:-'\e[42m'}
     if [ "${KSH_VERSION%*PD KSH}" != "$KSH_VERSION" ]; then
         echo -en "\[\e[0m\]{\[$_bgcolor$_color\]${_branch}\[\e[0m\]}"
     else
