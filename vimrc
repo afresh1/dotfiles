@@ -9,10 +9,10 @@ iab pdbg  use Data::Dumper 'Dumper'; $Data::Dumper::Maxdepth=3; warn Dumper [ ];
 nmap <Leader>t :s,@\(\w\w*\),[@\1](https://twitter.com/\1),g<CR>
 nmap <Leader>u :.!unshorten<CR>
 
-nmap <leader>du :diffupdate<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit<CR>
+nmap <Leader>du :diffupdate<CR>
+nmap <Leader>gd :Gdiff<CR>
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
 
 " http://statico.github.io/vim.html
 nmap <Leader>l :setlocal number!<CR>
