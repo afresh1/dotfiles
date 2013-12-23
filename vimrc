@@ -21,8 +21,6 @@ nmap <Leader>o :set paste!<CR>
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
-map ,ptv <Esc>:'<,'>! perltidy<CR>
-map ,pt <Esc>:%! perltidy<CR>
 
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab shiftround
 set autoindent          " always set autoindenting on
