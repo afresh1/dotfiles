@@ -132,6 +132,9 @@ endif
  "So awesome, it should be illegal 
     Bundle 'tpope/vim-git'
     Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'tsaleh/vim-matchit'
     "Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'kien/ctrlp.vim'
