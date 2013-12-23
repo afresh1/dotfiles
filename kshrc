@@ -5,7 +5,9 @@
 . ~/.kshrc.d/tmup
 . ~/.kshrc.d/pvi
 
-if [ which plenv > /dev/null 2>&1 ]; then
+export PATH="$HOME/bin:$PATH";
+
+if [ -e "$HOME/.plenv/bin" ]; then
     PATH="$HOME/.plenv/bin:$PATH"
     eval "$(plenv init -)"
 fi
