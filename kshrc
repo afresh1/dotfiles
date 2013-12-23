@@ -16,6 +16,7 @@ which cpandoc >/dev/null 2>&1 && alias perldoc=cpandoc
 [ "$DISPLAY" ] && which gvim >/dev/null 2>&1 && alias vi=gvim
 
 alias myip='lynx -dump http://ifconfig.me/ip'
+alias dnsip='dig myip.opendns.com @resolver1.opendns.com +short'
 
 if [ "$HOST" != "earth" ]; then
     if type -p printf > /dev/null 2>&1; then
