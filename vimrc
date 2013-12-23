@@ -1,6 +1,9 @@
 set nocompatible
 :filetype plugin on
 
+autocmd FileType conf set foldmethod=indent
+autocmd FileType perl set equalprg=perltidy
+
 iab pdbg  use Data::Dumper 'Dumper'; $Data::Dumper::Maxdepth=3; warn Dumper [ ];hhi
 
 nmap <Leader>t :s,@\(\w\w*\),[@\1](https://twitter.com/\1),g<CR>
@@ -54,9 +57,6 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
-
-autocmd FileType conf set foldmethod=indent
-autocmd FileType perl set equalprg=perltidy
 
 " http://vim.wikia.com/wiki/Switching_case_of_characters
 "function! TwiddleCase(str)
