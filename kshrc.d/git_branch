@@ -38,9 +38,9 @@ git_branch() {
     age=$(( $now - $last_pull ))
 
     if [ $age -gt 86400 ]; then
-        _color='\x1b[5m'$_color
-        #_color='\x1b[37m'
-        #_bgcolor='\x1b[41;1m';
+        _color='\e[5m'$_color
+        #_color='\e[37m'
+        #_bgcolor='\e[41;1m';
     fi
  
     if [ "${KSH_VERSION%*PD KSH}" != "$KSH_VERSION" ]; then
