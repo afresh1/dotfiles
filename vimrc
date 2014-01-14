@@ -138,6 +138,7 @@ endif
     "Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'terryma/vim-multiple-cursors'
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
