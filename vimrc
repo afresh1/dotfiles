@@ -145,3 +145,8 @@ endif
         :BundleInstall
     endif
 " Setting up Vundle - the vim plugin bundler end
+
+let local_vimrc=expand('~/.vimrc.local')
+if filereadable(local_vimrc)
+    exec "source " . local_vimrc
+endif
