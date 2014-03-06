@@ -1,16 +1,12 @@
 tmup() {
-    IFS="="
-    #set -x
-    #TMPFILE=`mktemp tmup.XXXXXXXXX`
-    tmux showenv |&
-    while read -p key value ; do
+    eval $(
+      local IFS="="
+      tmux showenv | while read key value ; do
         if [ ${key} != ${key#-} ]; then
-            unset ${key#-}
+          echo unset ${key#-}
         else
-            set $key="$value"
+          echo $key="'$value'"
         fi
-    done
-    # > $TMPFILE
-    # . $TMPFILE
-    # rm -f $TMPFILE
+      done
+    )
 }
