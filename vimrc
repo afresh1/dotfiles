@@ -109,6 +109,17 @@ function! StatusLineIndexLine()
 endfunction
 endif
 
+""" POWERLINE """
+"" Always show statusline
+"set laststatus=2
+"" Use 256 colours (only if your terminal supports 256 colours)
+"set t_Co=256
+"
+"set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
+
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
