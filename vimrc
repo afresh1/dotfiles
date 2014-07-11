@@ -70,16 +70,16 @@ endif
 "vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 " http://blogs.perl.org/users/ovid/2011/01/show-perl-subname-in-vim-statusline.html
-if ! exists("b:did_statusline")
-    if has( 'perl' )
-      setlocal statusline+=%(\ %{StatusLineIndexLine()}%)
-    endif
-    setlocal statusline+=%=
-    setlocal statusline+=%-0.25f\ 
-    setlocal statusline+=%(%{fugitive#statusline()}%)\ 
-    setlocal statusline+=%P
-    let b:did_statusline = 1
-endif
+"if ! exists("b:did_statusline")
+"    if has( 'perl' )
+"      setlocal statusline+=%(\ %{StatusLineIndexLine()}%)
+"    endif
+"    setlocal statusline+=%=
+"    setlocal statusline+=%-0.25f\ 
+"    setlocal statusline+=%(%{fugitive#statusline()}%)\ 
+"    setlocal statusline+=%P
+"    let b:did_statusline = 1
+"endif
 
 if has( 'perl' )
 perl << EOP
@@ -120,6 +120,12 @@ endif
 "python powerline_setup()
 "python del powerline_setup
 
+""" VIM-AIRLINE """
+if has("gui_running")
+    let g:airline_powerline_fonts = 1
+endif
+let g:airline#extensions#tabline#enabled = 1
+
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -150,6 +156,7 @@ endif
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'kien/ctrlp.vim'
     Bundle 'terryma/vim-multiple-cursors'
+    Plugin 'bling/vim-airline'
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
