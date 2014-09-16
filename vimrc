@@ -1,5 +1,7 @@
 set nocompatible
-:filetype plugin on
+filetype on
+filetype plugin on
+filetype plugin indent on
 
 autocmd FileType conf set foldmethod=indent
 autocmd FileType perl set equalprg=perltidy
@@ -38,7 +40,6 @@ let perl_include_pod = 1
 set laststatus=2
 
 colorscheme koehler
-"colorscheme solarized
 set bg=dark
 set hidden
 set t_Co=256
@@ -99,7 +100,7 @@ perl << EOP
                 last;
             }
         }
-        VIM::DoCommand "let subName='$line_number: $sub_name'";
+        VIM::DoCommand "let subName='$line_number:$column: $sub_name'";
     }
 EOP
 
@@ -156,7 +157,8 @@ let g:airline#extensions#tabline#enabled = 1
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'kien/ctrlp.vim'
     Bundle 'terryma/vim-multiple-cursors'
-    Plugin 'bling/vim-airline'
+    Bundle 'bling/vim-airline'
+    "Bundle 'guyzmo/vim-etherpad'
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -164,6 +166,7 @@ let g:airline#extensions#tabline#enabled = 1
         :BundleInstall
     endif
 " Setting up Vundle - the vim plugin bundler end
+"colorscheme solarized
 
 let local_vimrc=expand('~/.vimrc.local')
 if filereadable(local_vimrc)
