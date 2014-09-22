@@ -23,6 +23,8 @@ nmap <Leader>o :set paste!<CR>
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
+" map! ^O {^M}^[O^T from Tom Christensen
+map!  {}O	
 
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab shiftround
 set autoindent          " always set autoindenting on
