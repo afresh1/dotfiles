@@ -70,57 +70,6 @@ endif
 "endfunction
 "vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
-" http://blogs.perl.org/users/ovid/2011/01/show-perl-subname-in-vim-statusline.html
-"if ! exists("b:did_statusline")
-"    if has( 'perl' )
-"      setlocal statusline+=%(\ %{StatusLineIndexLine()}%)
-"    endif
-"    setlocal statusline+=%=
-"    setlocal statusline+=%-0.25f\ 
-"    setlocal statusline+=%(%{fugitive#statusline()}%)\ 
-"    setlocal statusline+=%P
-"    let b:did_statusline = 1
-"endif
-
-if has( 'perl' )
-perl << EOP
-    use strict;
-    sub current_sub {
-        my $curwin = $main::curwin;
-        my $curbuf = $main::curbuf;
-
-        my @document = map { $curbuf->Get($_) } 0 .. $curbuf->Count;
-        my ( $line_number, $column  ) = $curwin->Cursor;
-
-        my $sub_name = '(not in sub)';
-        for my $i ( reverse ( 1 .. $line_number  -1 ) ) {
-            my $line = $document[$i];
-            if ( $line =~ /^\s*(sub|helper|method)\s+(\w+)\b/ ) {
-                $sub_name = substr($1,0,1) . ":$2";
-                last;
-            }
-        }
-        VIM::DoCommand "let subName='$line_number:$column: $sub_name'";
-    }
-EOP
-
-function! StatusLineIndexLine()
-  perl current_sub()
-  return subName
-endfunction
-endif
-
-""" POWERLINE """
-"" Always show statusline
-"set laststatus=2
-"" Use 256 colours (only if your terminal supports 256 colours)
-"set t_Co=256
-"
-"set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
-
 """ VIM-AIRLINE """
 if has("gui_running")
     let g:airline_powerline_fonts = 1
