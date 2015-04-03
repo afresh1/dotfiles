@@ -3,8 +3,20 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
+autocmd BufNewFile,BufRead  */template/* setfiletype tt2html
+autocmd BufNewFile,BufRead  *.tt         setfiletype tt2html
+autocmd BufNewFile,BufRead  *            :call CheckForTT()
+let b:tt2_syn_tags = '\[% %]'
+
+function! CheckForTT ()
+    if getline(1) =~ '[%'
+        setfiletype tt2html
+    endif
+endfunction
+
 autocmd FileType conf set foldmethod=indent
 autocmd FileType perl set equalprg=perltidy
+autocmd FileType tt2html set sw=2 ts=2 sts=2
 
 iab pdbg  use Data::Dumper 'Dumper'; $Data::Dumper::Maxdepth=3; warn Dumper [ ];hhi
 
