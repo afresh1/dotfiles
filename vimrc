@@ -69,6 +69,14 @@ set showmatch
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  "autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+  match ExtraWhitespace /\s\+$/
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
 endif
 
 " http://vim.wikia.com/wiki/Switching_case_of_characters
