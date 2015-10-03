@@ -41,6 +41,8 @@ nmap <C-p> :bprev<CR>
 map!  {}O	
 
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab shiftround
+au BufRead,BufNewFile /usr/* set shiftwidth=8 tabstop=8 softtabstop=4 noexpandtab
+
 set autoindent          " always set autoindenting on
 set wildchar=<Tab>
 set matchpairs+=<:>               "Allow % to bounce between angles too
