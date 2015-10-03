@@ -30,3 +30,6 @@ XLock.lockdelay: 5
 !*faceName:             xft:Droid Sans Mono:style=Regular:size=9
 !*faceNameDoublesize:   xft:Droid Sans Japanese:style=Regular
 !*faceNameDoublesize:   xft:Droid Sans Fallback:style=Regular
+! From reyk
+UXTerm*on4Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+*VT100*translations: #override Shift <Btn1Up>: exec-formatted("firefox '%t'", PRIMARY)
