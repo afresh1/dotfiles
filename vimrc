@@ -146,6 +146,8 @@ let g:airline#extensions#tabline#enabled = 1
         :PluginInstall
     endif
 " Setting up Vundle - the vim plugin bundler end
+"let g:solarized_termtrans = 1
+"let g:solarized_termcolors = 256
 "colorscheme solarized
 
 let local_vimrc=expand('~/.vimrc.local')
