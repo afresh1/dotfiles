@@ -21,9 +21,10 @@ done
 
 for d in \
     /usr/local/lib/X11/fonts/* \
+    /usr/local/share/fonts/* \
     /usr/local/share/ghostscript/fonts \
     ; do
-	if [ -d $d ]; then
+	if [ -d $d -a -e $d/fonts.dir ]; then
 		 xset fp+ $d
 	fi
 done
