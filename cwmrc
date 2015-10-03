@@ -4,10 +4,10 @@ gap 0 15 0 0
 
 moveamount 3
 
-command lock "/home/andrew/bin/lock_screen"
+command lock "lock_screen"
 command term "/usr/X11R6/bin/uxterm"
 command toggle_transparancy "/usr/local/bin/transset-df"
-command firefox "/home/andrew/bin/firefox"
+command firefox "firefox"
 
 bind 4-k "ptrmoveup"
 bind 4-j "ptrmovedown"
