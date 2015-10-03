@@ -26,6 +26,8 @@ ulimit_max() {
     done
 }
 
+stty -ixon ixany status ^T
+
 if [ "$HOST" != "earth" ]; then
     if type -p printf > /dev/null 2>&1; then
         red="echo -en \e[31m"
