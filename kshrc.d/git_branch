@@ -32,7 +32,7 @@ git_branch() {
     [ "$_color" -a "$_bgcolor" ] && _color="${_color%m};1m"
 
     local now=$(date +%s)
-    local last_pull=0
+    local last_pull=$now
     local fetch_head=$( git rev-parse --show-toplevel )/.git/FETCH_HEAD 
     [ -e $fetch_head ] && last_pull=$(stat -c%Y $fetch_head 2>/dev/null || stat -f%m $fetch_head)
     age=$(( $now - $last_pull ))
