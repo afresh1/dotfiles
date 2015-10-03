@@ -114,31 +114,35 @@ let g:airline#extensions#tabline#enabled = 1
         let iCanHazVundle=0
     endif
     set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
+    call vundle#begin()
+    Plugin 'gmarik/vundle'
     "Add your bundles here
 
  "uber awesome syntax and errors highlighter
-    Bundle 'Syntastic'
+    Plugin 'Syntastic'
  "T-H-E colorscheme
-    Bundle 'altercation/vim-colors-solarized'
- "So awesome, it should be illegal 
-    Bundle 'tpope/vim-git'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-repeat'
-    "Bundle 'tsaleh/vim-matchit'
-    "Bundle 'scrooloose/nerdtree'
-    Bundle 'scrooloose/nerdcommenter'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'terryma/vim-multiple-cursors'
-    Bundle 'bling/vim-airline'
-    "Bundle 'guyzmo/vim-etherpad'
+    "Plugin 'altercation/vim-colors-solarized'
+ "So awesome, it should be illegal
+    "Plugin 'tpope/vim-git'
+    "Plugin 'tpope/vim-fugitive'
+    "Plugin 'tpope/vim-surround'
+    "Plugin 'tpope/vim-repeat'
+    "Plugin 'tsaleh/vim-matchit'
+    "Plugin 'scrooloose/nerdtree'
+    "Plugin 'scrooloose/nerdcommenter'
+    "Plugin 'kien/ctrlp.vim'
+    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'bling/vim-airline'
+    Plugin 'vim-scripts/Arduino-syntax-file'
+    "Plugin 'guyzmo/vim-etherpad'
+    "Plugin 'POD-folder'
+    "Plugin 'WolfgangMehner/vim-plugins', {'rtp': 'perl-support'}
+    call vundle#end()
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
-        :BundleInstall
+        :PluginInstall
     endif
 " Setting up Vundle - the vim plugin bundler end
 "colorscheme solarized
