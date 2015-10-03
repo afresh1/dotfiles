@@ -1,6 +1,7 @@
 sticky yes
-fontname "-*-profont-*-*-*-*-*-120-*-*-*-*-*-*"
-gap 0 15 0 0
+#fontname "-*-profont-*-*-*-*-*-120-*-*-*-*-*-*"
+fontname "-*-profont-*-*-*-*-12-*-72-72-*-*-*-*"
+gap 0 12 0 0
 
 moveamount 3
 

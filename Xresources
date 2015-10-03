@@ -16,6 +16,17 @@ Vim.geometry: 80x30-0-0
 UXTerm*background: black
 UXTerm*foreground: green
 !UXTerm*loginShell: true
-*faceName: xft:ProFontWindows
+!*faceName: profont
+*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
+!*faceName: xft:ProFontWindows:size=9
+!*faceSize: 9
 !:pointsize=9
-*faceSize: 9
+XLock.lockdelay: 5
+!*faceName: xft:DejaVu Mono:style=Regular
+!*faceNameDoublesize: DejaVu Mono:style=Regular
+!*faceName: xft:Symbola
+!*faceNameDoublesize: xft:Symbola
+!
+!*faceName:             xft:Droid Sans Mono:style=Regular:size=9
+!*faceNameDoublesize:   xft:Droid Sans Japanese:style=Regular
+!*faceNameDoublesize:   xft:Droid Sans Fallback:style=Regular
