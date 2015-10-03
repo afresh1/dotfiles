@@ -20,6 +20,12 @@ which cpandoc >/dev/null 2>&1 && alias perldoc=cpandoc
 alias myip='ftp -M -o- http://ifconfig.me/ip'
 alias dnsip='dig myip.opendns.com @resolver1.opendns.com +short'
 
+ulimit_max() {
+    for o in c d f l m n p s t; do
+        ulimit -$o $( ulimit -H$o )
+    done
+}
+
 if [ "$HOST" != "earth" ]; then
     if type -p printf > /dev/null 2>&1; then
         red="echo -en \e[31m"
