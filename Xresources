@@ -5,6 +5,7 @@
 !XTerm*faceName: ProFont
 !XTerm*faceSize: 8
 !XTerm.termName:         xterm-free86
+UXTerm.termName: xterm-256color
 Xft.antialias:  true
 Xft.rgba:       rgb
 ! rgb, bgr, vrgb, vbgr
