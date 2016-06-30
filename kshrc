@@ -4,6 +4,7 @@
 . ~/.kshrc.d/git_branch
 . ~/.kshrc.d/tmup
 . ~/.kshrc.d/pvi
+. ~/.kshrc.d/ssh-copy-id
 
 export PATH="$HOME/bin:$PATH";
 
