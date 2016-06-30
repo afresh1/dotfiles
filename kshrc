@@ -17,7 +17,7 @@ alias randpasswd="perl /usr/local/libdata/perl5/site_perl/Crypt/RandPasswd.pm"
 which cpandoc >/dev/null 2>&1 && alias perldoc=cpandoc
 [ "$DISPLAY" ] && which gvim >/dev/null 2>&1 && alias vi=gvim
 
-alias myip='ftp -M -o- http://ifconfig.me/ip'
+alias myip='ftp -o- http://ifconfig.me/ip 2>/dev/null' # no progress bar
 alias dnsip='dig myip.opendns.com @resolver1.opendns.com +short'
 
 ulimit_max() {
