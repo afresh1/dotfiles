@@ -155,6 +155,8 @@ let g:airline#extensions#tabline#enabled = 1
     "Plugin 'POD-folder'
     "Plugin 'WolfgangMehner/vim-plugins', {'rtp': 'perl-support'}
     Bundle 'zirrostig/vim-schlepp'
+    Bundle 'DrawIt'
+    "Bundle 'thoughtstream/Damian-Conway-s-Vim-Setup', { 'rtp': 'plugin/dragvisuals.vim', 'name': 'dragvisuals' }
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
