@@ -40,6 +40,22 @@ nmap <C-p> :bprev<CR>
 " map! ^O {^M}^[O^T from Tom Christensen
 map!  {}O	
 
+" https://raw.githubusercontent.com/thoughtstream/Damian-Conway-s-Vim-Setup/master/plugin/dragvisuals.vim
+" runtime plugin/dragvisuals.vim
+" let g:DVB_TrimWS = 1
+" vmap  <expr>  <S-LEFT>   DVB_Drag('left')
+" vmap  <expr>  <S-RIGHT>  DVB_Drag('right')
+" vmap  <expr>  <S-DOWN>   DVB_Drag('down')
+" vmap  <expr>  <S-UP>     DVB_Drag('up')
+" vmap  <expr>  D          DVB_Duplicate()
+
+" https://github.com/zirrostig/vim-schlepp
+vmap <unique> <up>    <Plug>SchleppUp
+vmap <unique> <down>  <Plug>SchleppDown
+vmap <unique> <left>  <Plug>SchleppLeft
+vmap <unique> <right> <Plug>SchleppRight
+vmap <unique> D <Plug>SchleppDup
+
 set shiftwidth=4 tabstop=4 softtabstop=4 expandtab shiftround
 au BufRead,BufNewFile /usr/* set shiftwidth=8 tabstop=8 softtabstop=4 noexpandtab
 
@@ -138,7 +154,7 @@ let g:airline#extensions#tabline#enabled = 1
     "Plugin 'guyzmo/vim-etherpad'
     "Plugin 'POD-folder'
     "Plugin 'WolfgangMehner/vim-plugins', {'rtp': 'perl-support'}
-    call vundle#end()
+    Bundle 'zirrostig/vim-schlepp'
 
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
