@@ -20,7 +20,7 @@ autocmd FileType tt2html set sw=2 ts=2 sts=2
 
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 
-iab pdbg  use Data::Dumper 'Dumper'; $Data::Dumper::Maxdepth=3; warn Dumper [ ];hhi
+iab pdbg  use Data::Dumper 'Dumper'; $Data::Dumper::Maxdepth=3; print STDERR Dumper([ ]);hhhi
 
 nmap <Leader>t :s,@\(\w\w*\),[@\1](https://twitter.com/\1),g<CR>
 nmap <Leader>u :.!unshorten<CR>
