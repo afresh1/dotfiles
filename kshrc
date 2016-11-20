@@ -38,5 +38,5 @@ if [ "$HOST" != "earth" ]; then
     fi
 fi
 
-[ -e ~/.kshrc.d/$HOST ] && . ~/.kshrc.d/$HOST
+[ -e ~/.kshrc.d/local ] && . ~/.kshrc.d/local
 
