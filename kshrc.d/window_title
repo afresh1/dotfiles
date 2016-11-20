@@ -1,0 +1,7 @@
+window_title() {
+  local title=$PWD
+  local trim=${title%????????????????}
+  [ "$trim" = "$title" ] || title=${title#$trim}
+  [ "$PWD"  = "$title" ] || title="<$title";
+  printf '\\[\033k%s\007\\]' "$title"
+}
