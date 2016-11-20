@@ -40,12 +40,16 @@ xset fp rehash
 /usr/X11R6/bin/xcompmgr &
 
 # https://wiki.archlinux.org/index.php/Touchpad_Synaptics
-/usr/X11R6/bin/syndaemon -K -d -t -i 0.4
-/usr/X11R6/bin/synclient PalmDetect=1 PalmMinWidth=4 PalmMinZ=100
+/usr/X11R6/bin/syndaemon -K -d
+#/usr/X11R6/bin/synclient PalmDetect=1 PalmMinWidth=4 PalmMinZ=100
 #/usr/X11R6/bin/synclient CircularScrolling=1
-/usr/X11R6/bin/synclient TapButton1=1 TapButton2=2 TapButton3=3 TapAndDragGesture=1
-/usr/X11R6/bin/synclient MiddleButtonAreaLeft=3100 MiddleButtonAreaRight=3799 MiddleButtonAreaTop=4000 MiddleButtonAreaBottom=0
-/usr/X11R6/bin/synclient RightButtonAreaLeft=3800 RightButtonAreaRight=6000 RightButtonAreaTop=4000 RightButtonAreaBottom=0
+#/usr/X11R6/bin/synclient TapButton1=1 TapButton2=2 TapButton3=3 TapAndDragGesture=0
+/usr/X11R6/bin/synclient \
+    MiddleButtonAreaLeft=3100 MiddleButtonAreaRight=3799 \
+    MiddleButtonAreaTop=4000  MiddleButtonAreaBottom=0
+/usr/X11R6/bin/synclient \
+    RightButtonAreaLeft=3800 RightButtonAreaRight=6000 \
+    RightButtonAreaTop=4000  RightButtonAreaBottom=0
 
 
 
