@@ -1,11 +1,4 @@
-!XTerm*background: black
-!XTerm*foreground: green
-!XTerm*loginShell: true
-!*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
-!XTerm*faceName: ProFont
-!XTerm*faceSize: 8
-!XTerm.termName:         xterm-free86
-UXTerm.termName: xterm-256color
+XTerm.termName: xterm-256color
 Xft.antialias:  true
 Xft.rgba:       rgb
 ! rgb, bgr, vrgb, vbgr
@@ -13,15 +6,14 @@ Xft.hinting:    true
 Xft.hintstyle:  hintsfull
 !hintsnone, hintslight, hintsmedium, hintsfull
 Vim.geometry: 80x30-0-0
-UXTerm*background: black
-UXTerm*foreground: green
-!UXTerm*loginShell: true
-!*faceName: profont
-*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
-!*faceName: xft:ProFontWindows:size=9
-!*faceSize: 9
-!:pointsize=9
+XTerm*background: black
+XTerm*foreground: green
+!XTerm*loginShell: true
 XLock.lockdelay: 5
+!*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
+*faceName: ProFont
+*faceSize: 9
+!*faceName: xft:Source Code Pro
 !*faceName: xft:DejaVu Mono:style=Regular
 !*faceNameDoublesize: DejaVu Mono:style=Regular
 !*faceName: xft:Symbola
@@ -31,5 +23,5 @@ XLock.lockdelay: 5
 !*faceNameDoublesize:   xft:Droid Sans Japanese:style=Regular
 !*faceNameDoublesize:   xft:Droid Sans Fallback:style=Regular
 ! From reyk
-UXTerm*on4Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+XTerm*on4Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
 *VT100*translations: #override Shift <Btn1Up>: exec-formatted("firefox '%t'", PRIMARY)
