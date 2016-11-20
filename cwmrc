@@ -35,6 +35,9 @@ bind 4M-m "/usr/local/bin/transset-df -p --inc .1"
 bind 4-F5 "/usr/X11R6/bin/xbacklight -5"
 bind 4-F6 "/usr/X11R6/bin/xbacklight +5"
 
+bind 4-" htile
+bind 4-; vtile
+
 bind XF86AudioRaiseVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=+1"
 bind XF86AudioLowerVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=-1"
 
