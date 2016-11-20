@@ -28,9 +28,9 @@ bind 4S-h "bigptrmoveleft"
 bind 4-r "exec"
 bind 4-space "exec"
 
-bind 4-t "/usr/local/bin/transset-df -p"
-bind 4-l "/usr/local/bin/transset-df -p --dec .1"
-bind 4-m "/usr/local/bin/transset-df -p --inc .1"
+bind 4M-t "/usr/local/bin/transset-df -p"
+bind 4M-l "/usr/local/bin/transset-df -p --dec .1"
+bind 4M-m "/usr/local/bin/transset-df -p --inc .1"
 
 bind 4-F5 "/usr/X11R6/bin/xbacklight -5"
 bind 4-F6 "/usr/X11R6/bin/xbacklight +5"
