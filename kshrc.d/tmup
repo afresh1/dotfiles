@@ -5,7 +5,7 @@ tmup() {
         if [ ${key} != ${key#-} ]; then
           echo unset ${key#-}
         else
-          echo $key="'$value'"
+          echo export $key="'$value'"
         fi
         echo ';' # required as this ends up on one line
       done
