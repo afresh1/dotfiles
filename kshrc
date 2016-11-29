@@ -12,13 +12,6 @@ fi
 . ~/.kshrc.d/pvi
 . ~/.kshrc.d/ssh-copy-id
 
-export PATH="$HOME/bin:$PATH";
-
-if [ -e "$HOME/.plenv/bin" ]; then
-    PATH="$HOME/.plenv/bin:$PATH"
-    eval "$(plenv init -)"
-fi
-
 alias getpass="perl -I${HOME}/Palm/lib ${HOME}/Palm/examples/example3.pl -sn"
 alias randpasswd="perl /usr/local/libdata/perl5/site_perl/Crypt/RandPasswd.pm"
 which cpandoc >/dev/null 2>&1 && alias perldoc=cpandoc

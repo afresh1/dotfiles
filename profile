@@ -8,8 +8,13 @@
 
 #PKG_PATH="/usr/ports/packages/`uname -m`/all/:ftp://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`//"
 
-PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:$HOME/.plenv/bin
+PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 export PATH HOME TERM PKG_PATH
+
+if [ -e "$HOME/.plenv/bin" ]; then
+    PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
 
 export ENV=~/.kshrc
 export LESS=iR
