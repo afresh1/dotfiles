@@ -29,7 +29,8 @@ ulimit_max() {
     done
 }
 
-stty -ixon ixany status ^T
+# If we are on a machine without status, ignore the error
+stty -ixon ixany status ^T 2>/dev/null
 
 if type -p printf > /dev/null 2>&1; then
     red="echo -en \e[31m"
