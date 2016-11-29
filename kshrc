@@ -1,4 +1,10 @@
-[ -e /etc/ksh.kshrc ] && . /etc/ksh.kshrc
+if [ "$KSH_VERSION" != "${KSH_VERSION#*MIRBSD}" -a -e ~/.kshrc.d/dot.mkshrc ]; then
+    . ~/.kshrc.d/dot.mkshrc
+elif [ -e ~/.kshrc.d/ksh.kshrc ]; then
+    . ~/.kshrc.d/ksh.kshrc
+elif [ -e /etc/ksh.kshrc ]; then
+    . /etc/ksh.kshrc
+fi
 [ "$HOST" ] || export HOST=$( hostname -s )
 
 . ~/.kshrc.d/git_branch
