@@ -38,13 +38,11 @@ ulimit_max() {
 
 stty -ixon ixany status ^T
 
-if [ "$HOST" != "earth" ]; then
-    if type -p printf > /dev/null 2>&1; then
-        red="echo -en \e[31m"
-        export PS1='\[\e[0;36m\]\h: \W $(git_branch) \[\e[01m\e[30m$([ $? -eq 0 ]||$red)\]\$\[\e[0m\] '
-    else
-        export PS1='\[\e[0;36m\]\h: \W \[\e[01m\e[30m\]\$\[\e[0m\] '
-    fi
+if type -p printf > /dev/null 2>&1; then
+    red="echo -en \e[31m"
+    export PS1='\[\e[0;36m\]\h: \W $(git_branch) \[\e[01m\e[30m$([ $? -eq 0 ]||$red)\]\$\[\e[0m\] '
+else
+    export PS1='\[\e[0;36m\]\h: \W \[\e[01m\e[30m\]\$\[\e[0m\] '
 fi
 
 [ -e ~/.kshrc.d/local ] && . ~/.kshrc.d/local

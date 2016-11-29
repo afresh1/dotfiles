@@ -20,27 +20,3 @@ which vim >/dev/null 2>&1 && export VISUAL=vim
 if [ "$HOST" = "earth" ]; then
     PKG_PATH="/usr/ports/packages/`uname -m`/all/:http://us.holligan.net/pub/OpenBSD/`uname -r`/packages/`uname -m`/:http://rrlhcbtt0100/pub/OpenBSD/`uname -r`/packages/`uname -m`/:http://ftp3.usa.openbsd.org/pub/OpenBSD/`uname -r`/packages/`uname -m`/"
 fi
-
-if [ "$HOST" = "trillian" ]; then
-    if [ -e ~/.ssh/agent_info ]; then
-        . ~/.ssh/agent_info
-    fi
-fi
-
-if [ "$HOST" = 'us' ]; then
-    [ $TERM = "xterm" ] && eval `tset -Qs xterm-color`
-
-    if [ -e ~/.fetchmailrc ] ; then
-            /usr/local/bin/fetchmail
-    fi
-
-    if [ -e ~/.mutt/mailboxes ] ; then
-            mutt_mailboxes > ~/.mutt/mailboxes
-    fi
-
-    if [ X"" == X"$TMUX" ]; then
-        echo Starting tmux
-        sleep 3
-        exec tmux attach
-    fi
-fi
