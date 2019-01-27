@@ -16,6 +16,7 @@ fi
 alias getpass="perl -I${HOME}/Palm/lib ${HOME}/Palm/examples/example3.pl -sn"
 alias randpasswd="perl /usr/local/libdata/perl5/site_perl/Crypt/RandPasswd.pm"
 which cpandoc >/dev/null 2>&1 && alias perldoc=cpandoc
+alias termbin="nc termbin.com 9999"
 [ "$DISPLAY" ] && which gvim >/dev/null 2>&1 && alias vi=gvim
 
 alias myip='ftp -o- http://ifconfig.me/ip 2>/dev/null' # no progress bar
