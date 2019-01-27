@@ -3,7 +3,7 @@
 # sh/ksh initialization
 
 #PKG_PATH="http://mirror.planetunix.net/pub/OpenBSD/snapshots/packages/`uname -m`/:ftp://ftp3.usa.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:ftp://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:/var/packages/`uname -m`/all/"
-PKG_PATH="http://mirrors.gigenet.com/pub/OpenBSD/snapshots/packages/`uname -m`/:http://ftp3.usa.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:http://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:/var/packages/`uname -m`/all/"
+#PKG_PATH="http://mirrors.gigenet.com/pub/OpenBSD/snapshots/packages/`uname -m`/:http://ftp3.usa.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:http://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`/:/var/packages/`uname -m`/all/"
 #http://borkpkg.ath.cx/packages/`uname -m`/pkg/:
 
 #PKG_PATH="/usr/ports/packages/`uname -m`/all/:ftp://ftp.openbsd.org/pub/OpenBSD/snapshots/packages/`uname -m`//"
