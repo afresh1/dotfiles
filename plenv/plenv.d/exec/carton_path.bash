@@ -1,0 +1,1 @@
+export PERL_CARTON_PATH=${PLENV_DIR}/local/${PLENV_VERSION}

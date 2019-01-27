@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export PLENV_VERSION
+for PLENV_VERSION in $( plenv versions --bare | sort -V ); do
+	plenv exec perl -E "say qq{PLENV_VERSION=$PLENV_VERSION # \$]}"
+	plenv exec "$@"
+done
+

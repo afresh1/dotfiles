@@ -1,0 +1,31 @@
+#!/bin/sh
+
+install_perl() {
+	local _v=$1
+	local _n=$2
+	plenv install $_v --as=$_n
+}
+
+plenv install --list | grep '^ 5\.' | tr '.' ' ' | (
+	version=""
+	name=""
+
+	while read m n p; do
+		[ $n -lt 10 ] && continue # don't need that old of perl
+
+		next="$m.$n"
+		if [ "$name" \
+		  -a "$name" != "$next" \
+		  -a $(( $n % 2 )) -eq 1 \
+		]; then
+			install_perl $version $name
+		fi
+
+		name=$next
+		version="$m.$n.$p"
+	done
+
+	install_perl $version $name
+)
+
+
