@@ -66,6 +66,9 @@ if [ -z "$SSH_AGENT_PID" -o ! -e $SSH_AUTH_SOCK ]; then
 	echo Agent pid ${SSH_AGENT_PID};" > ~/.ssh/agent_info
 fi
 
+if [ -x /usr/local/bin/dbus-launch -a -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
+        eval `dbus-launch --sh-syntax --exit-with-x11`
+fi
 
 # start some nice programs
 xconsole -iconic &
