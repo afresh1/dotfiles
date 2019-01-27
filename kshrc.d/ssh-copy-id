@@ -1,5 +1,12 @@
 ssh-copy-id() {
-   key=$1
-   host=$2
-   ssh $host 'umask 077; mkdir -p ~/.ssh; cat - >> .ssh/authorized_keys' < $key
+   key=$1; shift
+   if [ ! "$*" ]; then
+      echo "Usage: ssh-copy-id $pubkey $host1 [$host2 [$hostN]]" >&2
+      return 2
+   fi
+   [ -e "$key.pub" ] && key="$key.pub"
+   for h in "$@"; do
+     echo "Installing $key in $h:.ssh/authorized_keys"
+     ssh $h 'umask 077; mkdir -p ~/.ssh;cat - >>.ssh/authorized_keys' < $key
+   done
 }
