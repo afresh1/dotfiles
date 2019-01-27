@@ -21,6 +21,7 @@ alias termbin="nc termbin.com 9999"
 
 alias myip='ftp -o- http://ifconfig.me/ip 2>/dev/null' # no progress bar
 alias dnsip='dig myip.opendns.com @resolver1.opendns.com +short'
+alias dc="dc -e '5 k'"
 
 ulimit_max() {
     for o in c d f l m n p s t; do
