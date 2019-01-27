@@ -10,9 +10,11 @@ XTerm*background: black
 XTerm*foreground: green
 !XTerm*loginShell: true
 XLock.lockdelay: 5
-!*font: -*-profont-*-*-*-*-12-*-72-72-*-*-*-*
-*faceName: ProFont
-*faceSize: 9
+!*font: -*-profont-*-*-*-*-10-*-*-*-*-*-*-*
+
+*faceName: xft:ProFontWindows:pixelsize=12
+!*faceSize: 9
+!*faceName: spleen:pixelsize=12:antialias=false
 !*faceName: xft:Source Code Pro
 !*faceName: xft:DejaVu Mono:style=Regular
 !*faceNameDoublesize: DejaVu Mono:style=Regular

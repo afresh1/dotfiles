@@ -78,8 +78,8 @@ colorscheme koehler
 set bg=dark
 set hidden
 set t_Co=256
-"set guifont=ProFontWindows\ 9
-set guifont=profont
+set guifont=ProFontWindows\ 9
+"set guifont=profont
 
 set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
