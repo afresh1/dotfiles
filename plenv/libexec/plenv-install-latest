@@ -8,13 +8,12 @@ perl_name_to_version() {
 }
 
 remove_perl() {
-	local _v=$1
-	local _n=$2
+	local _n=$1
 
 	local prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null )
 	[ "$prefix" -a -d "$prefix" ] || return
 
-	echo "Removing $_v was $_n"
+	echo "Removing $( perl_name_to_version $_n ) was $_n"
 	rm -r "$prefix"
 }
 
@@ -26,7 +25,7 @@ install_perl() {
 	local current=$( perl_name_to_version $_n )
 	if [ "$current" ]; then
 		if [ "$current" != "$_v" ]; then
-			remove_perl $_v $_n
+			remove_perl $_n
 		else
 			return
 		fi
@@ -47,14 +46,10 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 		args=""
 
 		if [ $(( $n % 2 )) -ne 0 ]; then
-			if [ "$last" ]; then
-				if [ "$dev" != "$name" ]; then
-					dev=$name
-					remove_perl $version $dev
-				fi
-				continue
-			fi
+			[ "$last" -a "$dev" != "$name" ] && remove_perl $name
+			dev=$name
 			args="-Dusedevel"
+			[ "$last" ] && continue
 		fi
 
 		if [ "$name" != "$last" ]; then
