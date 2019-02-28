@@ -1,31 +1,67 @@
 #!/bin/sh
 
+perl_name_to_version() {
+	local _n=$1
+	local version
+	eval $( PLENV_VERSION=$_n plenv exec perl -V:version 2>/dev/null )
+	echo $version
+}
+
+remove_perl() {
+	local _v=$1
+	local _n=$2
+
+	local prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null )
+	[ "$prefix" -a -d "$prefix" ] || return
+
+	echo "Removing $_v was $_n"
+	rm -r "$prefix"
+}
+
 install_perl() {
 	local _v=$1
 	local _n=$2
-	plenv install $_v --as=$_n
+	local _a=$3
+
+	local current=$( perl_name_to_version $_n )
+	if [ "$current" ]; then
+		if [ "$current" != "$_v" ]; then
+			remove_perl $_v $_n
+		else
+			return
+		fi
+	fi
+
+	plenv install $_v --as=$_n $_a
 }
 
-plenv install --list | grep '^ 5\.' | tr '.' ' ' | (
-	version=""
-	name=""
+plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
+	last=""
+	dev=""
 
 	while read m n p; do
 		[ $n -lt 10 ] && continue # don't need that old of perl
 
-		next="$m.$n"
-		if [ "$name" \
-		  -a "$name" != "$next" \
-		  -a $(( $n % 2 )) -eq 1 \
-		]; then
-			install_perl $version $name
+		version="$m.$n.$p"
+		name="$m.$n"
+		args=""
+
+		if [ $(( $n % 2 )) -ne 0 ]; then
+			if [ "$last" ]; then
+				if [ "$dev" != "$name" ]; then
+					dev=$name
+					remove_perl $version $dev
+				fi
+				continue
+			fi
+			args="-Dusedevel"
 		fi
 
-		name=$next
-		version="$m.$n.$p"
+		if [ "$name" != "$last" ]; then
+			install_perl $version $name $args
+		fi
+
+		last=$name;
 	done
-
-	install_perl $version $name
 )
-
 
