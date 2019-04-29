@@ -10,38 +10,38 @@ command lock "lock_screen"
 command toggle_transparancy "/usr/local/bin/transset-df"
 command firefox "firefox"
 
-bind 4-k "ptrmoveup"
-bind 4-j "ptrmovedown"
-bind 4-l "ptrmoveright"
-bind 4-h "ptrmoveleft"
+bind-key 4-k pointer-move-up
+bind-key 4-j pointer-move-down
+bind-key 4-l pointer-move-right
+bind-key 4-h pointer-move-left
 
-bind 4S-k "bigptrmoveup"
-bind 4S-j "bigptrmovedown"
-bind 4S-l "bigptrmoveright"
-bind 4S-h "bigptrmoveleft"
+bind-key 4S-k pointer-move-up-big
+bind-key 4S-j pointer-move-down-big
+bind-key 4S-l pointer-move-right-big
+bind-key 4S-h pointer-move-left-big
 
-#bind SunFront "raise"
-#bind SunProps "label"
-#bind SunOpen "exec"
-#bind Find "search"
+#bind-key SunFront raise
+#bind-key SunProps label
+#bind-key SunOpen exec
+#bind-key Find search
 
-bind 4-r "exec"
-bind 4-space "exec"
+bind-key 4-r exec
+bind-key 4-space exec
 
-bind 4M-t "/usr/local/bin/transset-df -p"
-bind 4M-l "/usr/local/bin/transset-df -p --dec .1"
-bind 4M-m "/usr/local/bin/transset-df -p --inc .1"
+bind-key 4M-t "/usr/local/bin/transset-df -p"
+bind-key 4M-l "/usr/local/bin/transset-df -p --dec .1"
+bind-key 4M-m "/usr/local/bin/transset-df -p --inc .1"
 
-bind 4-F5 "/usr/X11R6/bin/xbacklight -5"
-bind 4-F6 "/usr/X11R6/bin/xbacklight +5"
+bind-key 4-F5 "/usr/X11R6/bin/xbacklight -5"
+bind-key 4-F6 "/usr/X11R6/bin/xbacklight +5"
 
-bind 4-" htile
-bind 4-; vtile
+#bind-key 4-" htile
+#bind-key 4-; vtile
 
-bind XF86AudioRaiseVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=+1"
-bind XF86AudioLowerVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=-1"
+bind-key XF86AudioRaiseVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=+1"
+bind-key XF86AudioLowerVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=-1"
 
-bind M-v "/usr/local/bin/gvim"
+bind-key M-v "/usr/local/bin/gvim"
 
 ignore xclock
 autogroup 0 "Pidgin"
