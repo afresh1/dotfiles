@@ -159,6 +159,7 @@ let g:airline#extensions#tabline#enabled = 1
     Bundle 'DrawIt'
     "Bundle 'thoughtstream/Damian-Conway-s-Vim-Setup', { 'rtp': 'plugin/dragvisuals.vim', 'name': 'dragvisuals' }
 
+    call vundle#end()
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
