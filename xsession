@@ -32,7 +32,7 @@ xset fp rehash
 
 ~/bin/setup-display &
 
-/usr/X11R6/bin/xidle -timeout 600 &
+/usr/X11R6/bin/xidle -delay 5 -program /usr/X11R6/bin/xlock -timeout 600 &
 /usr/X11R6/bin/xset s off
 /usr/X11R6/bin/xset dpms 0 0 610
 /usr/X11R6/bin/xbacklight -set 50
