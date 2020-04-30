@@ -22,6 +22,7 @@ done
 for d in \
     /usr/local/lib/X11/fonts/* \
     /usr/local/share/fonts/* \
+    /usr/local/share/fonts/powerline/* \
     /usr/local/share/ghostscript/fonts \
     ; do
 	if [ -d $d -a -e $d/fonts.dir ]; then
