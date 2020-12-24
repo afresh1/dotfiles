@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ "${PLENV_ROOT}" ] || PLENV_ROOT="${HOME}/.plenv"
+
 perl_name_to_version() {
 	local _n=$1
 	local version
@@ -35,8 +37,6 @@ install_perl() {
 }
 
 plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
-	post_exec=$( plenv commands | grep '^install-local-modules$' );
-
 	last=""
 	dev=""
 
@@ -56,8 +56,11 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 
 		if [ "$name" != "$last" ]; then
 			install_perl $version $name $args
-			[ "$post_exec" ] &&
-			    PLENV_VERSION=$name plenv $post_exec
+			if [ -e "${PLENV_ROOT}/extra-modules" ]; then
+			    PLENV_VERSION=$name plenv install-cpanm
+			    PLENV_VERSION=$name plenv cpanm \
+                                < "${PLENV_ROOT}/extra-modules"
+			fi
 		fi
 
 		last=$name;
