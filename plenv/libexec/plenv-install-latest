@@ -4,6 +4,29 @@
 
 oldest=5.8
 
+args=`getopt o: $*`
+if [ $? -ne 0 ]
+then
+	echo 'Usage: [ -o oldest ]'
+	exit 2
+fi
+set -- $args
+while [ $# -ne 0 ]
+do
+	case "$1"
+	in
+		-o)
+			oldest="$2"; shift; shift;;
+		--)
+			shift; break;;
+	esac
+done
+
+if ! perl -Mversion -e "version->parse('v$oldest')"; then
+	echo "Invalid oldest version ($oldest), try -o 5.8" >&2
+	exit 2
+fi
+
 perl_name_to_version() {
 	local _n=$1
 	local version
