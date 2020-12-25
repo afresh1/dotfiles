@@ -50,7 +50,7 @@ remove_perl() {
 
 install_perl() {
 	local _v=$1; shift
-	local _n=$2; shift
+	local _n=$1; shift
 
 	local current=$( perl_name_to_version $_n )
 	if [ "$current" ]; then
@@ -86,10 +86,10 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 		fi
 
 		if [ "$name" != "$last" ]; then
-			install_perl $version $name$suffix "$@" $args
+			install_perl $version "$name$suffix" "$@" $args
 			if [ -e "${PLENV_ROOT}/extra-modules" ]; then
-			    PLENV_VERSION=$name$suffix plenv install-cpanm
-			    PLENV_VERSION=$name$suffix plenv exec cpanm \
+			    PLENV_VERSION="$name$suffix" plenv install-cpanm
+			    PLENV_VERSION="$name$suffix" plenv exec cpanm \
                                 < "${PLENV_ROOT}/extra-modules"
 			fi
 		fi
