@@ -88,7 +88,7 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 			install_perl $version $name$suffix "$@" $args
 			if [ -e "${PLENV_ROOT}/extra-modules" ]; then
 			    PLENV_VERSION=$name$suffix plenv install-cpanm
-			    PLENV_VERSION=$name$suffix plenv cpanm \
+			    PLENV_VERSION=$name$suffix plenv exec cpanm \
                                 < "${PLENV_ROOT}/extra-modules"
 			fi
 		fi
