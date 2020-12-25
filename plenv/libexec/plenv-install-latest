@@ -48,9 +48,8 @@ remove_perl() {
 }
 
 install_perl() {
-	local _v=$1
-	local _n=$2
-	local _a=$3
+	local _v=$1; shift
+	local _n=$2; shift
 
 	local current=$( perl_name_to_version $_n )
 	if [ "$current" ]; then
@@ -61,7 +60,7 @@ install_perl() {
 		fi
 	fi
 
-	plenv install $_v --as=$_n $_a "$@"
+	plenv install $_v --as=$_n "$@"
 }
 
 plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
