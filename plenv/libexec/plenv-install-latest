@@ -2,6 +2,8 @@
 
 [ "${PLENV_ROOT}" ] || PLENV_ROOT="${HOME}/.plenv"
 
+oldest=5.8
+
 perl_name_to_version() {
 	local _n=$1
 	local version
@@ -41,11 +43,14 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 	dev=""
 
 	while read m n p; do
-		[ $n -lt 8 ] && continue # don't need that old of perl
-
 		version="$m.$n.$p"
 		name="$m.$n"
 		args=""
+
+		[ "$oldest" ] &&
+		    perl -Mversion -e \
+		    "exit( version->parse('v$oldest') > 'v${version%-*}' )" ||
+		    break # don't need that old of perl
 
 		if [ $(( $n % 2 )) -ne 0 ]; then
 			[ "$last" -a "$dev" != "$name" ] && remove_perl $name
