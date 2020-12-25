@@ -42,7 +42,7 @@ remove_perl() {
 	local _n=$1
 
 	local prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null )
-	[ "$prefix" -a -d "$prefix" ] || return
+	[ "$prefix" -a -d "$prefix" ] || return 0
 
 	echo "Removing $( perl_name_to_version $_n ) was $_n"
 	rm -r "$prefix"
@@ -57,7 +57,7 @@ install_perl() {
 		if [ "$current" != "$_v" ]; then
 			remove_perl $_n
 		else
-			return
+			return 0
 		fi
 	fi
 
