@@ -8,7 +8,7 @@ suffix=
 args=`getopt o:s: $*`
 if [ $? -ne 0 ]
 then
-	echo 'Usage: [ -o oldest ] [ -s suffix ]'
+	echo 'Usage: [ -o oldest ] [ -s suffix ] -- [ extra plenv-install args ]'
 	exit 2
 fi
 set -- $args
@@ -61,7 +61,7 @@ install_perl() {
 		fi
 	fi
 
-	plenv install $_v --as=$_n $_a
+	plenv install $_v --as=$_n $_a "$@"
 }
 
 plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
