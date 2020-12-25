@@ -3,11 +3,12 @@
 [ "${PLENV_ROOT}" ] || PLENV_ROOT="${HOME}/.plenv"
 
 oldest=5.8
+suffix=
 
-args=`getopt o: $*`
+args=`getopt o:s: $*`
 if [ $? -ne 0 ]
 then
-	echo 'Usage: [ -o oldest ]'
+	echo 'Usage: [ -o oldest ] [ -s suffix ]'
 	exit 2
 fi
 set -- $args
@@ -17,6 +18,8 @@ do
 	in
 		-o)
 			oldest="$2"; shift; shift;;
+		-s)
+			suffix="$2"; shift; shift;;
 		--)
 			shift; break;;
 	esac
@@ -83,10 +86,10 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 		fi
 
 		if [ "$name" != "$last" ]; then
-			install_perl $version $name $args
+			install_perl $version $name$suffix "$@" $args
 			if [ -e "${PLENV_ROOT}/extra-modules" ]; then
-			    PLENV_VERSION=$name plenv install-cpanm
-			    PLENV_VERSION=$name plenv cpanm \
+			    PLENV_VERSION=$name$suffix plenv install-cpanm
+			    PLENV_VERSION=$name$suffix plenv cpanm \
                                 < "${PLENV_ROOT}/extra-modules"
 			fi
 		fi
