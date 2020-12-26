@@ -1,15 +1,16 @@
 #!/bin/sh
 set -e
 
-[ "${PLENV_ROOT}" ] || PLENV_ROOT="${HOME}/.plenv"
+[ "${PLENV_ROOT}" ] || PLENV_ROOT=$( plenv root )
 
+dry_run=
 oldest=5.8
 suffix=
 
-args=`getopt o:s: $*`
+args=`getopt no:s: $*`
 if [ $? -ne 0 ]
 then
-	echo 'Usage: [ -o oldest ] [ -s suffix ] -- [ extra plenv-install args ]'
+	echo 'Usage: [-n] [ -o oldest ] [ -s suffix ] -- [ extra plenv-install args ]'
 	exit 2
 fi
 set -- $args
@@ -17,6 +18,8 @@ while [ $# -ne 0 ]
 do
 	case "$1"
 	in
+		-n)
+			dry_run=1; shift;;
 		-o)
 			oldest="$2"; shift; shift;;
 		-s)
@@ -44,6 +47,11 @@ remove_perl() {
 	local prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null )
 	[ "$prefix" -a -d "$prefix" ] || return 0
 
+	if [ "$dry_run" ]; then
+		echo "Would remove $prefix"
+		return 0
+	fi
+
 	echo "Removing $( perl_name_to_version $_n ) was $_n"
 	rm -r "$prefix"
 }
@@ -61,7 +69,25 @@ install_perl() {
 		fi
 	fi
 
+	if [ "$dry_run" ]; then
+		echo "Would install  $_v as $_n ($@)"
+		return 0
+	fi
 	plenv install $_v --as=$_n "$@"
+}
+
+install_extra_modules() {
+	local _n=$1; shift
+	[ -e "${PLENV_ROOT}/extra-modules" ] || return 0
+
+	if [ "$dry_run" ]; then
+		#echo "Installing cpanm and extra-modules to $_n"
+		return 0
+	fi
+
+	PLENV_VERSION="$_n" plenv install-cpanm
+	PLENV_VERSION="$_n" plenv exec cpanm \
+	    --notest < "${PLENV_ROOT}/extra-modules"
 }
 
 plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
@@ -87,11 +113,7 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 
 		if [ "$name" != "$last" ]; then
 			install_perl $version "$name$suffix" "$@" $args
-			if [ -e "${PLENV_ROOT}/extra-modules" ]; then
-			    PLENV_VERSION="$name$suffix" plenv install-cpanm
-			    PLENV_VERSION="$name$suffix" plenv exec cpanm \
-				--notest < "${PLENV_ROOT}/extra-modules"
-			fi
+			install_extra_modules "$name$suffix"
 		fi
 
 		last=$name;
