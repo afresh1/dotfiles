@@ -34,7 +34,16 @@ stty -ixon ixany status ^T 2>/dev/null
 
 if type -p printf > /dev/null 2>&1; then
     red="echo -en \e[31m"
-    export PS1='\[\e[0;36m\]\h: \W $(git_branch) \[\e[01m\e[30m$([ $? -eq 0 ]||$red)\]\$\[\e[0m\] '
+
+    ps1_chr() {
+        if [ $( ssh-add -l 2>/dev/null | wc -l ) -eq 0 ]; then
+            echo !!
+        else
+            echo $
+        fi
+    }
+
+    export PS1='\[\e[0;36m\]\h: \W $(git_branch) \[\e[01m\e[30m$([ $? -eq 0 ]||$red)\]$(ps1_chr)\[\e[0m\] '
 else
     export PS1='\[\e[0;36m\]\h: \W \[\e[01m\e[30m\]\$\[\e[0m\] '
 fi
