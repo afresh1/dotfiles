@@ -35,10 +35,11 @@ if ! perl -Mversion -e "version->parse('v$oldest')"; then
 fi
 
 perl_name_to_version() {
-	local _n=$1
-	local version
-	eval $( PLENV_VERSION=$_n plenv exec perl -V:version 2>/dev/null )
-	echo $version
+	local _v=$1
+	PLENV_VERSION=$_v plenv exec perl -V |
+	PLENV_VERSION=$_v plenv exec perl -MConfig -n \
+	    -e '$rc="-$1" if ( /Locally /../^\s*Built / ) && /\b(RC\d+)\b/;' \
+	    -e 'END { print "$Config{version}$rc" }'
 }
 
 remove_perl() {
