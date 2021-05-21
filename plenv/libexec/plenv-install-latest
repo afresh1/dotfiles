@@ -70,7 +70,9 @@ install_perl() {
 	fi
 
 	if [ "$dry_run" ]; then
-		echo "Would install  $_v as $_n ($@)"
+		local extra
+		[ "$@" ] && extra=" ($@)"
+		echo "Would install  $_v as $_n$extra"
 		return 0
 	fi
 	plenv install $_v --as=$_n "$@"
