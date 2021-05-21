@@ -38,8 +38,8 @@ bind-key 4-F6 "/usr/X11R6/bin/xbacklight +5"
 #bind-key 4-" htile
 #bind-key 4-; vtile
 
-bind-key XF86AudioRaiseVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=+1"
-bind-key XF86AudioLowerVolume "/usr/bin/mixerctl outputs.master.mute=off outputs.master=-1"
+bind-key XF86AudioRaiseVolume "/usr/bin/sndioctl output.mute=0 output.level=+0.1"
+bind-key XF86AudioLowerVolume "/usr/bin/sndioctl output.mute=0 output.level=-0.1"
 
 bind-key M-v "/usr/local/bin/gvim"
 
