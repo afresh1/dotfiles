@@ -5,7 +5,7 @@ git_branch() {
     local _bgcolor
     local _color
 
-    for s in $(git status --porcelain | tr ' ' '.' | cut -c 1-2); do
+    for s in $(git status -uno --porcelain | tr ' ' '.' | cut -c 1-2); do
         if [ ! "$_color" ]; then
             case "$s" in
                ?D)  _color='\e[31m' ;;
