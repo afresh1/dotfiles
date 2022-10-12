@@ -33,8 +33,8 @@ git_branch() {
 
     local now=$(date +%s)
     local last_pull=$now
-    local fetch_head=$( git rev-parse --show-toplevel )/.git/FETCH_HEAD 
-    [ -e $fetch_head ] && last_pull=$(stat -c%Y $fetch_head 2>/dev/null || stat -f%m $fetch_head)
+    local fetch_head=$( git rev-parse --show-toplevel )/.git/FETCH_HEAD
+    [ -e "$fetch_head" ] && last_pull=$(stat -c%Y "$fetch_head" 2>/dev/null || stat -f%m "$fetch_head")
     age=$(( $now - $last_pull ))
 
     if [ $age -gt 86400 ]; then
