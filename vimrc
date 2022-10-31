@@ -3,6 +3,8 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
+set encoding=utf-8
+
 autocmd BufNewFile,BufRead  *.running    setfiletype cisco
 autocmd BufNewFile,BufRead  */template/* setfiletype tt2html
 autocmd BufNewFile,BufRead  *.tt         setfiletype tt2html
