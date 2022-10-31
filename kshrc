@@ -36,6 +36,8 @@ if type -p printf > /dev/null 2>&1; then
     red="echo -en \e[31m"
 
     ps1_chr() {
+        [ $( ssh-add -l 2>/dev/null | wc -l ) -eq 0 ] && tmup 2>/dev/null
+
         if [ $( ssh-add -l 2>/dev/null | wc -l ) -eq 0 ]; then
             echo !!
         else
