@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e
 
 [ "${PLENV_ROOT}" ] || PLENV_ROOT=$( plenv root )
@@ -7,13 +7,12 @@ dry_run=
 oldest=5.8
 suffix=
 
-args=`getopt no:s: $*`
+set -- $( getopt no:s: "$@" )
 if [ $? -ne 0 ]
 then
 	echo 'Usage: [-n] [ -o oldest ] [ -s suffix ] -- [ extra plenv-install args ]'
 	exit 2
 fi
-set -- $args
 while [ $# -ne 0 ]
 do
 	case "$1"
@@ -36,24 +35,26 @@ fi
 
 perl_name_to_version() {
 	local _v=$1
-	PLENV_VERSION=$_v plenv exec perl -V |
+	PLENV_VERSION=$_v plenv exec perl -V 2>/dev/null |
 	PLENV_VERSION=$_v plenv exec perl -MConfig -n \
 	    -e '$rc="-$1" if ( /Locally /../^\s*Built / ) && /\b(RC\d+)\b/;' \
-	    -e 'END { print "$Config{version}$rc" }'
+	    -e 'END { print "$Config{version}$rc" }' 2>/dev/null || true
 }
 
 remove_perl() {
 	local _n=$1
 
-	local prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null )
-	[ "$prefix" -a -d "$prefix" ] || return 0
+	local prefix
+	prefix=$( PLENV_VERSION=$_n plenv prefix 2>/dev/null || true )
+
+	[ "$prefix" ] && [ -d "$prefix" ] || return 0
 
 	if [ "$dry_run" ]; then
 		echo "Would remove $prefix"
 		return 0
 	fi
 
-	echo "Removing $( perl_name_to_version $_n ) was $_n"
+	echo "Removing $( perl_name_to_version "$_n" ) was $_n"
 	rm -r "$prefix"
 }
 
@@ -61,10 +62,11 @@ install_perl() {
 	local _v=$1; shift
 	local _n=$1; shift
 
-	local current=$( perl_name_to_version $_n )
+	local current
+	current=$( perl_name_to_version "$_n" )
 	if [ "$current" ]; then
 		if [ "$current" != "$_v" ]; then
-			remove_perl $_n
+			remove_perl "$_n"
 		else
 			return 0
 		fi
@@ -72,11 +74,11 @@ install_perl() {
 
 	if [ "$dry_run" ]; then
 		local extra
-		[ "$@" ] && extra=" ($@)"
+		[ "$*" ] && extra=" ($*)"
 		echo "Would install  $_v as $_n$extra"
 		return 0
 	fi
-	plenv install $_v --as=$_n "$@"
+	plenv install "$_v" --as="$_n" "$@"
 }
 
 install_extra_modules() {
@@ -97,25 +99,26 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 	last=""
 	dev=""
 
-	while read m n p; do
+	while read -r m n p; do
 		version="$m.$n.$p"
 		name="$m.$n"
 		args=""
 
-		[ "$oldest" ] &&
+		if [ "$oldest" ]; then
 		    perl -Mversion -e \
 		    "exit( version->parse('v$oldest') > 'v${version%-*}' )" ||
 		    break # don't need that old of perl
+		fi
 
-		if [ $(( $n % 2 )) -ne 0 ]; then
-			[ "$last" -a "$dev" != "$name" ] && remove_perl $name
+		if (( n % 2 != 0 )); then
+			[ "$last" ] && [ "$dev" != "$name" ] && remove_perl "$name"
 			dev=$name
 			args="-Dusedevel"
 			[ "$last" ] && continue
 		fi
 
 		if [ "$name" != "$last" ]; then
-			install_perl $version "$name$suffix" "$@" $args
+			install_perl "$version" "$name$suffix" "$@" ${args:+"${args}"}
 			install_extra_modules "$name$suffix"
 		fi
 
