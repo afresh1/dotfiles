@@ -110,6 +110,16 @@ plenv install --list | grep '^ 5\.' | grep -v '^ 5.00' | tr '.' ' ' | (
 		    break # don't need that old of perl
 		fi
 
+		if [[ $p =~ [0-9]-RC[0-9] ]]; then
+			if [ "$name" = "$last" ] ||
+			   [ "${version%[0-9]}" = "${last%[0-9]}" ]; then
+				remove_perl "$version"
+				[ "$name" = "$last" ] || last=$version
+				continue
+			fi
+			name=$version
+		fi
+
 		if (( n % 2 != 0 )); then
 			[ "$last" ] && [ "$dev" != "$name" ] && remove_perl "$name"
 			dev=$name
