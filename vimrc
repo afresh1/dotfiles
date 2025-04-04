@@ -172,6 +172,11 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:solarized_termcolors = 256
 "colorscheme solarized
 
+let epd_vimrc=expand('~/.vimrc.extra-paired-delimiters')
+if filereadable(epd_vimrc)
+    exec "source " . epd_vimrc
+endif
+
 let local_vimrc=expand('~/.vimrc.local')
 if filereadable(local_vimrc)
     exec "source " . local_vimrc

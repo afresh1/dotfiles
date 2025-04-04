@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+use v5.38;
+use warnings;
+use utf8;      # so literals and identifiers can be in UTF-8
+use warnings  qw(FATAL utf8);    # fatalize encoding glitches
+use open      qw(:std :encoding(UTF-8)); # undeclared streams in UTF-8
+
+my $infile  = "vimrc.extra-paired-delimiters";
+my $outfile = "vim/after/syntax/perl.vim";
+
+my @pairs;
+open my $in, '<', $infile or die "Unable to open $infile: $!";
+while (readline $in) {
+    if (/^set mps\+=(.):(.) /) {
+        push @pairs, [ $1, $2 ];
+    }
+}
+close $in;
+
+open my $out, ">", $outfile or die "Unable to open $outfile: $!";
+
+for (@pairs) {
+    my ($o, $c) = $_->@*;
+    print $out <<EOL
+syn region perlQ  matchgroup=perlStringStartEnd start=+\\<\\%(::\\|'\\|->\\)\\@<!q\\s*$o+     end=+$c+ contains=\@perlInterpSQ,perlAnglesSQ keepend extend
+syn region perlQQ matchgroup=perlStringStartEnd start=+\\<\\%(::\\|'\\|->\\)\\@<!q[qx]\\s*$o+ end=+$c+ contains=\@perlInterpDQ,perlAnglesDQ keepend extend
+syn region perlQW matchgroup=perlStringStartEnd start=+\\<\\%(::\\|'\\|->\\)\\@<!qw\\s*$o+    end=+$c+ contains=\@perlInterpSQ,perlAnglesSQ keepend extend
+
+EOL
+}
+
+close $out;
+
